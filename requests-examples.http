@@ -1,0 +1,75 @@
+# примеры API-запросов
+
+@baseUrl = http://localhost:8000/api
+
+# получение объявлений
+GET {{baseUrl}}/advertisements/
+Content-Type: application/json
+Authorization: Token b9047851209714b8af4961b049fd97dfd5f4854f
+
+###
+
+# создание объявления по токену
+POST {{baseUrl}}/advertisements/
+Content-Type: application/json
+Authorization: Token 0b7c0aa16c6bb5fb3a7a7f5b5f7ed3d9c5809465
+
+{
+  "title": "Шкаф IKEA",
+  "description": "Срочно"
+}
+
+###
+
+# попытка поменять статус объявления
+PATCH {{baseUrl}}/advertisements/2/
+Content-Type: application/json
+Authorization: Token 0b7c0aa16c6bb5fb3a7a7f5b5f7ed3d9c5809465
+
+{
+  "status": "OPEN"
+}
+
+###
+
+# попытка поменять текст объявления
+PATCH {{baseUrl}}/advertisements/2/
+Content-Type: application/json
+Authorization: Token 0b7c0aa16c6bb5fb3a7a7f5b5f7ed3d9c5809465
+
+{
+  "description": "не Срочно"
+}
+
+###
+
+# фильтрация по создателю
+GET {{baseUrl}}/advertisements/?creator=1
+Content-Type: application/json
+Authorization: Token b9047851209714b8af4961b049fd97dfd5f4854f
+
+###
+
+# фильтрация по дате
+GET {{baseUrl}}/advertisements/?created_at_before=2024-05-12
+Content-Type: application/json
+Authorization: Token b9047851209714b8af4961b049fd97dfd5f4854f
+
+###
+
+# попытка удалить объявление
+DELETE  {{baseUrl}}/advertisements/1/
+Content-Type: application/json
+Authorization: Token b9047851209714b8af4961b049fd97dfd5f4854f
+
+###
+
+# фильтрация по статусу
+GET {{baseUrl}}/advertisements/?status=CLOSED
+
+###
+
+# фильтрация по тексту
+GET {{baseUrl}}/advertisements/?description=не Срочно
+Content-Type: application/json
+Authorization: Token b9047851209714b8af4961b049fd97dfd5f4854f
